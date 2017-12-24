@@ -1,0 +1,16 @@
+<h2>
+  Products:
+</h2>
+<select [(ngModel)]="selectedProduct">
+  <option *ngFor="let product of products" [ngValue]="product"
+   (click)="onSelect(product)"
+  >
+    <span>{{product.id}}</span> {{product.name}}
+  </option>
+</select>
+
+<div *ngIf="selectedProduct">
+  <h2>{{selectedProduct.name}} details:</h2>
+  <div> {{selectedProduct.description}}</div>
+  <div> {{selectedProduct.price}}$</div>
+</div>
