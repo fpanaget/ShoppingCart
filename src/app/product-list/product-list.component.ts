@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../domain/product';
 import {PRODUCTS} from '../domain/mock-products';
 
 @Component({
