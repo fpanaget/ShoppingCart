@@ -10,9 +10,32 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Build for local testing
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Build and deploy to IBM Cloud
+
+Rename the route in the manifest.yml so it's unique.
+
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. 
+
+This copies the manifest.yml to the dist directory.
+
+Run `bx api api.eu-gb.bluemix.net` to select an IBM Cloud Region
+
+Run `bx login`
+
+Run `bx target –o ORG –s SPACE`
+
+where ORG=your organization SPACE=your space
+
+Run `cd dist`
+
+Run `bx cf push ShoppingCart`
+
+The application should become accessible on the selected route you specified in manifest.yml.
+
 
 ## Running unit tests
 
