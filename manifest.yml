@@ -1,0 +1,6 @@
+applications:
+- name: ShoppingCart
+  buildpack: staticfile_buildpack
+  routes:
+  - route: shoppingcartstatic-laraziosi-vu2018.eu-gb.mybluemix.net
+  memory: 1024M

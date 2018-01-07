@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  local_apiBaseUrl: "http://localhost:4001",
+  apiBaseUrl: "https://api.eu.apiconnect.ibmcloud.com/laraziosinlibmcom-vu2018/sb"
 };
