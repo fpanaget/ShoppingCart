@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from '../environments/environment'; 
+import { environment } from '../environments/environment';
 
 const httpOptions ={
   headers : new HttpHeaders ({'Content-type':'application/json'})
@@ -34,6 +34,13 @@ export class ProductService {
       //return the empty result so the application keeps running
       return of (result as T);
     }
+  }
+
+  createProduct(product:Product):Observable<Product>{
+    return this.http.post<Product>(this.productsUrl, product,httpOptions).pipe(
+      tap((product:Product)=>console.log('Created product with id =${product.id}')),
+      catchError(this.handleError<Product>('createProduct'))
+    );
   }
 
 }
