@@ -16,6 +16,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
+    this.productService.listNeedsRefresh.subscribe(needsRefresh=>{
+       if(needsRefresh)
+        this.getProducts();
+    });
   }
 
 getProducts() : void{

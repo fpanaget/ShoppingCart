@@ -18,7 +18,9 @@ export class ProductComponent implements OnInit {
   }
 
   onSubmit(){
-    this.productService.createProduct(this.product).subscribe();
+    this.productService.createProduct(this.product).subscribe(data=>
+      this.productService.triggerRefresh(true)
+    );
   }
 
 }
