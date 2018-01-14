@@ -23,6 +23,7 @@ export class ProductService {
 
   listNeedsRefresh = this.needsRefreshSubject.asObservable();
 
+
   triggerRefresh(needsRefresh) {
     //this means that the Subject will multicast
     //the value needsRefresh to all subscribers
@@ -51,6 +52,20 @@ export class ProductService {
     return this.http.post<Product>(this.productsUrl, product,httpOptions).pipe(
       tap((product:Product)=>console.log('Created product with id =${product.id}')),
       catchError(this.handleError<Product>('createProduct'))
+    );
+  }
+
+  deleteProduct(product:Product):Observable<any>{
+    return this.http.delete(this.productsUrl+"/"+product.id,httpOptions).pipe(
+      tap(()=>console.log('Deleted product')),
+      catchError(this.handleError<Product>('deleteProduct'))
+    );
+  }
+
+  modifyProduct(product:Product):Observable<Product>{
+    return this.http.put(this.productsUrl,product,httpOptions).pipe(
+      tap((product:Product)=>console.log('Modified product with id =${product.id}')),
+      catchError(this.handleError<Product>('modifyProduct'))
     );
   }
 
