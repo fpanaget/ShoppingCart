@@ -11,10 +11,14 @@ this.description= description;
 this.price = price;
 
 }
+
+
+
 id:number;
 name:string;
 description: string;
 price:number;
+
 
 
 }

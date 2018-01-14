@@ -12,6 +12,7 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import { ProductService } from './product.service';
 import { ProductDeleteComponent } from './product-delete/product-delete.component';
+import { ProductModifyComponent } from './product-modify/product-modify.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ProductDeleteComponent } from './product-delete/product-delete.componen
     OrderComponent,
     UserComponent,
     ProductListComponent,
-    ProductDeleteComponent
+    ProductDeleteComponent,
+    ProductModifyComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<div>
+  <h1>Modify existing product</h1>
+  <form #productModifyForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" [(ngModel)]="childProduct.name" id="name" name="name" required>
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <input type="text" [(ngModel)]="childProduct.description" id="description" name="description" required>
+    </div>
+    <div>
+      <label for="price">Price</label>
+      <input type="text" [(ngModel)]="childProduct.price" id="price" name = "price" required>
+    </div>
+    <button type="submit">Submit modification to database</button>
+  </form>
+</div>

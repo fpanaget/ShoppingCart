@@ -55,10 +55,17 @@ export class ProductService {
     );
   }
 
-  deleteProduct(product:Product):Observable<Product>{
+  deleteProduct(product:Product):Observable<any>{
     return this.http.delete(this.productsUrl+"/"+product.id,httpOptions).pipe(
-      tap((product:Product)=>console.log('Deleted product with id =${product.id}')),
+      tap(()=>console.log('Deleted product')),
       catchError(this.handleError<Product>('deleteProduct'))
+    );
+  }
+
+  modifyProduct(product:Product):Observable<Product>{
+    return this.http.put(this.productsUrl,product,httpOptions).pipe(
+      tap((product:Product)=>console.log('Modified product with id =${product.id}')),
+      catchError(this.handleError<Product>('modifyProduct'))
     );
   }
 
