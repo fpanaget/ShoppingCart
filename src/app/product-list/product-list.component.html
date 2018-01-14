@@ -13,6 +13,9 @@
   <h2>{{selectedProduct.name}} details:</h2>
   <div> {{selectedProduct.description}}</div>
   <div> {{selectedProduct.price}}$</div>
+  <app-product-delete
+  [product]="selectedProduct"
+  > </app-product-delete>
 </div>
 
 <app-product></app-product>
