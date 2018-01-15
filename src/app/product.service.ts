@@ -11,6 +11,9 @@ const httpOptions ={
   headers : new HttpHeaders ({'Content-type':'application/json'})
 };
 
+interface DeleteResult{
+  count:number;
+  }
 @Injectable()
 export class ProductService {
 
@@ -50,21 +53,21 @@ export class ProductService {
 
   createProduct(product:Product):Observable<Product>{
     return this.http.post<Product>(this.productsUrl, product,httpOptions).pipe(
-      tap((product:Product)=>console.log('Created product with id =${product.id}')),
+      tap((product:Product)=>console.log('Created product with id ='+product.id)),
       catchError(this.handleError<Product>('createProduct'))
     );
   }
 
   deleteProduct(product:Product):Observable<any>{
-    return this.http.delete(this.productsUrl+"/"+product.id,httpOptions).pipe(
-      tap(()=>console.log('Deleted product')),
+    return this.http.delete<DeleteResult>(this.productsUrl+"/"+product.id,httpOptions).pipe(
+      tap((deleteResult:DeleteResult)=>console.log('Count of deleted products: '+deleteResult.count)),
       catchError(this.handleError<Product>('deleteProduct'))
     );
   }
 
   modifyProduct(product:Product):Observable<Product>{
     return this.http.put(this.productsUrl,product,httpOptions).pipe(
-      tap((product:Product)=>console.log('Modified product with id =${product.id}')),
+      tap((product:Product)=>console.log('Modified product with id ='+product.id)),
       catchError(this.handleError<Product>('modifyProduct'))
     );
   }
