@@ -14,7 +14,8 @@ export class ProductComponent implements OnInit {
   constructor(private productService : ProductService) { }
 
   ngOnInit() {
-    this.product = new Product(0,'','',0);
+    //do not pass the id as it's optional
+    this.product = new Product('','',0);
   }
 
   onSubmit(){
