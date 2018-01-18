@@ -2,8 +2,13 @@ import {Product} from './product';
 import {User} from './user';
 
 export class Order{
-  id:number;
-  _user:User;
-  _products:Array<Product>;
+  private _id:string;
+
+ get id(): string{
+   return this._id;
+ }
+ set id(id: string){
+   this._id=id;
+ }
 
 }

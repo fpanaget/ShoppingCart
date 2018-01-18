@@ -10,6 +10,7 @@ import { UserComponent } from './user/user.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { AppRoutingModule } from './/app-routing.module';
 
+import { OrderService } from './order.service';
 import { ProductService } from './product.service';
 import { ProductDeleteComponent } from './product-delete/product-delete.component';
 import { ProductModifyComponent } from './product-modify/product-modify.component';
@@ -31,7 +32,7 @@ import { ProductModifyComponent } from './product-modify/product-modify.componen
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ ProductService ],
+  providers: [ ProductService, OrderService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
