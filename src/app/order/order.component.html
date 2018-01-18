@@ -1,3 +1,20 @@
-<p>
-  order works!
-</p>
+<div>
+  <h1>Create a new Order</h1>
+  <form #orderForm="ngForm" >
+    <h2>Add Product to Order </h2>
+    <select [(ngModel)]="selectedProduct" name="selectOfProduct">
+      <option *ngFor="let product of products" [ngValue]="product"
+       (click)="onSelect(product)"
+      >
+        <span>{{product.id}}</span> {{product.name}}
+      </option>
+    </select>
+   <button type="button" (click)="onAddProductSubmit()">Add product to order</button>
+
+    <button type="button" (click)="onSubmit()">Create order</button>
+  </form>
+  <div *ngIf="order">
+    <h2>Created order with id: {{order.id}}</h2>
+  </div>
+
+</div>
