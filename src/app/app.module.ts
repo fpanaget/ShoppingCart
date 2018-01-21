@@ -13,6 +13,7 @@ import { OrderService } from './order.service';
 import { ProductService } from './product.service';
 import { AuthenticationService } from './authentication.service';
 import { AuthorizationInterceptorService } from './authorization-interceptor.service';
+import { UnauthorizedInterceptorService } from './unauthorized-interceptor.service';
 import { ProductDeleteComponent } from './product-delete/product-delete.component';
 import { ProductModifyComponent } from './product-modify/product-modify.component';
 import { LoginComponent } from './login/login.component';
@@ -45,6 +46,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     AuthenticationService,
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptorService,
+      multi: true
+    },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptorService,
       multi: true
     }
    ],
