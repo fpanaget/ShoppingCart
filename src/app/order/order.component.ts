@@ -48,7 +48,7 @@ export class OrderComponent implements OnInit {
       for (let p of this.order_products){
          observables.push(this._orderService.addProductToOrder(this.order, p));
          }
-      //now subscribe to all of the Observable and wait until they all complete
+      //now subscribe to all of the Observables and wait until they all complete
       Observable.forkJoin(observables).subscribe();
     });
 
