@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { Customer } from '../domain/customer';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.customer = new Customer();
+    this.customer.client_id=environment.clientId;
+    this.customer.scope="admin_scope";
+    this.customer.grant_type="password";
   }
 
   onSubmit(){

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { URLSearchParams } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { map, tap, catchError} from 'rxjs/operators';
@@ -10,11 +12,12 @@ const httpOptions ={
   headers : new HttpHeaders ({'Content-type':'application/json'})
 };
 
+
 interface LoginOutput{
- id: string,
- ttl:number,
- created:string,
- userId: string
+ access_token: string,
+ expires_in:string,
+ scope:number,
+ typen_type: string
 }
 
 
@@ -35,12 +38,23 @@ export class AuthenticationService {
   }
 
   login(customer:Customer):Observable<any>{
-    return this.http.post<LoginOutput>(this.customerUrl+"/login", customer,httpOptions).pipe(
+    const httpOptions2 ={
+      headers : new HttpHeaders ({'Content-type':'application/x-www-form-urlencoded'})
+    };
+    let body = new URLSearchParams();
+    body.set('username',customer.username);
+    body.set('password',customer.password);
+    body.set('grant_type',customer.grant_type);
+    body.set('client_id',customer.client_id);
+    body.set('scope',customer.scope);
+
+
+    return this.http.post<LoginOutput>(environment.authBaseUrl+"/oauth2/token", body.toString(),httpOptions2).pipe(
       map(loginOutput=>{
         //login succesful
-        if(loginOutput.id && loginOutput.userId){
-          localStorage.setItem('currentUser',loginOutput.userId);
-          localStorage.setItem('accessToken',loginOutput.id);
+        if(loginOutput.access_token){
+          localStorage.setItem('access_token',loginOutput.access_token);
+
         }
         return loginOutput;
       }),
@@ -49,16 +63,28 @@ export class AuthenticationService {
 
   }
 
-  logout():Observable<any>{
-    let accessToken=localStorage.getItem('accessToken');
-    return this.http.post(this.customerUrl+"/logout", httpOptions).pipe(
-      tap(()=>{
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('accessToken');
+  // logout():Observable<any>{
+  //   let access_token=localStorage.getItem('access_token');
+  //   const httpOptions3 ={
+  //     headers : new HttpHeaders ({'Content-type':'application/x-www-form-urlencoded','x-ibm-client-id':environment.clientId})
+  //   };
+  //   let body = new URLSearchParams();
+  //   body.set('token',access_token);
+  //   body.set('token_type_hint','access_token');
+  //
+  //
+  //   return this.http.post(environment.authBaseUrl+"/oauth2/revoke", body, httpOptions3).pipe(
+  //     tap(()=>{
+  //       localStorage.removeItem('access_token');
+  //       console.log("succesfully logged out user");
+  //     }),
+  //     catchError(this.handleError('logout Customer'))
+  //   );
+  // }
+
+  logout():void{
+        localStorage.removeItem('access_token');
         console.log("succesfully logged out user");
-      }),
-      catchError(this.handleError('logout Customer'))
-    );
   }
 
   private handleError<T> (operation = 'operation', result?: T){
