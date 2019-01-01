@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   local_apiBaseUrl: "http://localhost:4001",
-  apiBaseUrl: "https://api.eu.apiconnect.ibmcloud.com/laraziosinlibmcom-vu2018/sb"
+  // apiBaseUrl: "https://api.eu.apiconnect.ibmcloud.com/laraziosinlibmcom-vu2018/sb"
+  apiBaseUrl: "http://localhost:4001"
 };
