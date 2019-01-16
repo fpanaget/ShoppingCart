@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   local_apiBaseUrl: "http://localhost:4001",
-  apiBaseUrl: "https://api.eu.apiconnect.ibmcloud.com/laraziosinlibmcom-vu2018/sb/v2"
+  apiBaseUrl: "https://shoppingloopback.eu-de.mybluemix.net/"
 };
