@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   local_apiBaseUrl: "http://localhost:4001",
-  apiBaseUrl: "https://shoppingloopback.eu-de.mybluemix.net/v2"
+  apiBaseUrl: "https://shoppingloopback3.eu-de.mybluemix.net/v3"
 };
