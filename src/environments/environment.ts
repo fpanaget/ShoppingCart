@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   local_apiBaseUrl: "http://localhost:4001",
-  apiBaseUrl: "https://shoppingloopback.eu-de.mybluemix.net/v2"
+  apiBaseUrl: "https://api.eu-de.apiconnect.appdomain.cloud/panagetnlibmcom-vuspace/vu/v2"
 };

@@ -7,7 +7,11 @@ import { Customer} from './domain/customer';
 import { environment } from '../environments/environment';
 
 const httpOptions ={
-  headers : new HttpHeaders ({'Content-type':'application/json'})
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'x-ibm-client-id': 'ee832963-f350-4e06-a9e2-006fa0c262fe',
+     'x-ibm-client-secret': 'gO5wG0gR8eH1vN3sM1cB8wP4oJ8jR7eL2qU1wW5jA1lH3qP5bV'
+  })
 };
 
 interface LoginOutput{

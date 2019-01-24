@@ -8,9 +8,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 const httpOptions ={
-  headers : new HttpHeaders ({'Content-type':'application/json'})
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
 };
-
 interface DeleteResult{
   count:number;
   }
@@ -34,7 +35,7 @@ export class ProductService {
   }
 
   getProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.productsUrl).pipe(
+    return this.http.get<Product[]>(this.productsUrl,httpOptions).pipe(
       tap (products => {
         console.log("get api/products");
         console.log(products);
